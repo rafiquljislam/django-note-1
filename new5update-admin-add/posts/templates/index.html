@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <h1>Hello World i am Home</h1>
+    <a href="{% url 'add' %}" class="btn btn-info">Add Post</a>
+    <div class="container">
+        {% for post in object_list %}
+        <div class="post">
+            <h2>{{ post.id }} // {{ post.title }}</h2>
+            <h4>By {{ post.author }}// Date={{ post.date }}// Catagory= {{ post.catagory.all|join:'-' }}// Status={{ post.status }}</h4>
+            <img src="{{ post.img.url }}" alt="" class="w-50">
+            {% autoescape off %}            
+                {{ post.content }}
+            {% endautoescape %} 
+            <div>
+                <a href="/edit/{{ post.pk }}" class="btn btn-info">Update</a>
+                 <a href="/delete/{{ post.pk }}" class="btn btn-danger">Delete</a>
+            </div>
+        </div> <br> <br>
+        {% endfor %}
+    </div>
+{% endblock content %}

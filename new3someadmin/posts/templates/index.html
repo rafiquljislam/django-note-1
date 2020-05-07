@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-2">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="media m-2">
+                    <img style="width: 300px;" class="mr-3" src="{{ post.img.url }}" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ post.title }}</h5>
+                        <span class="small"><b>by {{ post.user }}</b> on {{ post.date }}</span>
+                        <span class="small">{{ post.categorie.all|join:'--' }}</span>
+                        <p>{{ post.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1586208897767-c5ae40b34462?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

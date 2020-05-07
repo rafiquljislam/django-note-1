@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+
+{% for post in object_list %}
+<div style="margin-bottom: 20px;" class="card">
+<div class="card-body">
+<table>
+  <tr>
+    <td><img style="width:60px;border-radius: 34px;" src="{{ post.author.profile.image.url }}" alt="" class=""></td>
+    <td><p style="margin-left:10px;">By <a href="#">{{ post.author }}</a> On {{ post.date }}</p></td>
+  </tr>
+</table>
+<hr>
+<div class="media">
+  <img style="width:200px;" class="mr-3" src="{{ post.image.url }}">
+  <div class="media-body">
+    <h3 class="mt-0"><a href="{% url 'post_detale' post.pk %}">{{ post.title }}</a></h3>
+    
+    {% if post.content|length < 244 %}      
+      <p>{{ post.content }}</p>
+    {% else %}
+      <p>{{ post.content|slice:":240" }}..<a class="text-danger" href="{% url 'post_detale' post.pk %}">Read more</a></p>
+    {% endif %}
+      
+  </div>
+</div>
+</div>
+</div>
+{% endfor %}
+
+
+{% endblock content %}

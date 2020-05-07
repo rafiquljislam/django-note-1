@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div style="margin-bottom: 20px;" class="card">
+<div class="card-body">
+<table>
+  <tr>
+    <td><img style="width:60px;border-radius: 34px;" src="{{ post.author.profile.image.url }}" alt="" class=""></td>
+    <td><p style="margin-left:10px;">By <a href="#">{{ post.author }}</a> On {{ post.date }}</p></td>    
+    {% if post.author == user %}
+        <td class=""><a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post_update' post.pk %}">Update</a></td>
+        <td><a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post_delate' post.pk %}">Delete</a></td>
+    {% endif %}        
+  </tr>
+</table>
+<hr>
+<div class="">
+  <img style="width:100%;" class="mr-3" src="{{ post.image.url }}">
+  <div class="my-2">
+    <h2 class="">{{ post.title }}</h2>      
+      <p>{{ post.content }}</p>      
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}
